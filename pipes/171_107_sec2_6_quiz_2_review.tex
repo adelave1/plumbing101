@@ -1,0 +1,165 @@
+\documentclass{article}[12pt]
+\setlength{\evensidemargin}{0in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\textheight}{9in}
+\setlength{\topmargin}{-.75in}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows, decorations.markings}
+\usepackage{enumerate}
+\usepackage{datetime}
+\usepackage{natbib}
+\usepackage{array}
+\usepackage{hyperref}
+\hypersetup{
+colorlinks= true,
+allcolors = blue
+}
+\usepackage{arev} % excellent sans-serif font that has its own math mode font!
+\newtheorem{theorem}{Theorem}
+\usepackage{floatrow}
+
+\title{171.107 Quiz 2 Solutions}
+\author{Michael Busch \& Alexander de la Vega}
+\date{September 23, 2016}
+
+\begin{document}
+\maketitle
+
+\tikzset{->-/.style={decoration={
+  markings,
+  mark=at position #1 with {\arrow{>}}},postaction={decorate}}}
+
+\section*{Quiz Question}
+\begin{large} A soccer ball is kicked with an initial horizontal velocity of 4 m/s and an initial vertical velocity of 3 m/s.
+\begin{enumerate}
+\item What is the initial speed of the ball?
+\item What is the maximum height the ball goes above the ground?
+\item How far from where it was kicked will the ball land?
+\end{enumerate}
+
+\end{large}
+
+\section*{Quiz Solution}
+
+\begin{figure}[h!]
+\centering
+
+%\resizebox{5in}{!}{ % to resize
+\begin{tikzpicture}
+
+% grid lines
+%\draw [help lines] (-8, -3) grid (8, 5); 
+
+% plot trajectory
+\draw [domain=-3:3.1, thick=1] plot (\x, {0.1 + 5.9 * (0.2 * (\x + 3)) - 0.5 * 9.81 * (0.2 * (\x + 3))^2});
+\draw [domain=-3:-1, -triangle 45=0.5] plot (\x, {0.1 + 5.9 * (0.2 * (\x + 3)) - 0.5 * 9.81 * (0.2 * (\x + 3))^2});
+
+% angle
+\draw [thick=1] (-3, 0) ++(0:.75) arc(0:50:0.75);
+\node at (-2.1, 0.4) {$\theta$};
+
+% soccer ball
+\node at (-3, .17) {\includegraphics[height=0.15in]{soccer.jpg}};
+
+% 'ground'
+\draw [thick=1.5pt] (-6, 0) -- (6, 0);
+
+% brackets
+\draw [thick=1pt] (0, -1) to [out=90, in=180] (1.5, -0.5) to [out=0, in=-150] (3, -.25);
+\draw [thick=1pt] (0, -1) to [out=90, in=0] (-1.5, -0.5) to [out=180, in=-30] (-3, -.25);
+
+\draw [thick=1pt] (0.5, 0.9) to [out=180, in=90] (0.25, 0.45) to [out=-90, in=30] (0, 0);
+\draw [thick=1pt] (0.5, 0.9) to [out=180, in=-90] (0.25, 1.35) to [out=90, in=-30] (0, 1.8);
+
+% labels
+\node at (0.75, 0.9) {$h$};
+\node at (0, -1.2) {$d$};
+\end{tikzpicture} %}
+
+\caption{Trajectory of the soccer ball. We denote the max height it travels $h$ and the distance crossed $d$.}
+\label{fig:diagram}
+\end{figure}
+
+\begin{large}
+
+\noindent This problem is a straightforward 2D kinematics problem in projectile motion. We didn't allow calculators for this quiz,
+so to simplify calculations, we let $g = -10 \ \text{m/s}^2$. The trajectory and values of interest are shown in Figure \ref{fig:diagram}.
+
+\begin{enumerate}
+
+% 1
+\item For some initial velocity $\text{{\it V}}_{\text{{\it 0}}}$, we know that the {\it y} - and {\it x} - components of the velocity are 
+$$ V_{0_y} = V_0 \sin \theta = \text{3 m/s}$$
+$$ V_{0_x} = V_0 \cos \theta = \text{4 m/s},$$
+
+so using the either the Pythagorean theorem or the trigonometric identity $\sin^2 \theta + \cos^2 \theta = 1$, we find
+
+\begin{align*} V_0 &= \sqrt{V_{0_y}^2 + V_{0_x}^2} \\
+&= \sqrt{3^2 + 4^2} \\
+&= 5 \ \text{m/s}  \qquad \qquad \begin{small} \framebox[1.1\width]{3 pts + $\frac{1}{3}$ pts for units} \end{small}
+\end{align*}
+
+% 2
+\item \label{part2} There are two ways to go about solving this part: solving for the time to maximum height and finding $h$ afterwards, or using
+$V_f^2 = V_0^2 + 2ah$. For the first method, we write
+
+$$ V_{f_y} = V_{0_y} + \frac{1}{2} g t, \qquad \qquad \begin{small} \framebox[1.1\width]{1 pt} \end{small}$$
+
+for which we find time to max height (when $V_{f_y} = 0$)
+
+$$ t = \frac{V_{0_y}}{2g} = 0.3 \ \text{s} \qquad \qquad \begin{small} \framebox[1.1\width]{1 pt} \end{small}$$
+
+Plugging this time into $y = V_{0_y} t + \frac{1}{2} g t^2$, we find 
+$$ h = \frac{9}{20} = 0.45 \ \text{m}. \qquad \qquad \begin{small} \framebox[1.1\width]{1 pt + $\frac{1}{3}$ pts for units} \end{small} $$
+
+Finding $h$ with the second method is more direct: we write 
+
+$$ V_{f_y}^2 = V_{0_y}^2 + 2gh, \qquad \qquad \begin{small} \framebox[1.1\width]{2 pts} \end{small}$$
+
+and noting $V_{f_y} = 0$ at $h$, we solve for $h$ and find
+
+$$ h = \frac{9}{20} = 0.45 \ \text{m}. \qquad \qquad \begin{small} \framebox[1.1\width]{1 pt + $\frac{1}{3}$ pts for units} \end{small} $$ 
+
+% 3
+\item To find out how far horizontally the ball travels, we note that the $x$-component of the velocity is constant throughout the motion of the soccer ball. 
+Thus to find the maximum horizontal distance traveled, we write 
+
+$$ d = V_{0_x} t_d, \qquad \qquad \begin{small} \framebox[1.1\width]{1 pt} \end{small}$$
+
+where $t_d$ is the time to travel to max distance $d$. If the first method had been applied in Part \ref{part2}, then $t_d = 2 \times 0.3 = 0.6 \ \text{s}$, as 
+the time to the maximum height is half that of the time to the max distance (as the ball is launched from and lands at the same height). Had the first method
+in the last part not been applied, one could find the time by using quadratic formula with the equation $0 = V_{0_y} t + \frac{1}{2}gt^2$ or
+$-5t^2 + 3t = 0$, which has roots 0 and 0.6 (note here that we find the times where $y=0$). 
+\framebox[1.1\width]{1 point} was assigned for finding the time. Thus we find for $d$:
+
+$$d = V_{0_x} t_d = 4 \times 0.6 = 2.4 \ \text{m}. \qquad \qquad \begin{small} \framebox[1.1\width]{1 pt + $\frac{1}{3}$ pts for units} \end{small}$$
+
+\end{enumerate}
+
+\noindent Note that, as we're given the two components of the initial velocity, the angle $\theta$ need not play any role in any of the questions asked here. 
+For those who used the equation for maximum height, 
+
+$$ h = \frac{V_0^2 \sin^2 \theta}{2g},$$
+
+and that of the horizontal distance covered, 
+
+$$ d = \frac{V_0^2 \sin 2\theta}{g},$$
+
+we also assigned full points, but we would prefer if these equations were derived on future quizzes. 
+ 
+\end{large}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+\end{document}
