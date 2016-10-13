@@ -1,0 +1,125 @@
+\documentclass{article}[12pt]
+\setlength{\evensidemargin}{0in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\textheight}{9in}
+\setlength{\topmargin}{-.75in}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows, decorations.markings}
+\usetikzlibrary{decorations.pathmorphing,patterns}
+\usetikzlibrary{patterns}
+\usepackage{enumerate}
+\usepackage{datetime}
+\usepackage{natbib}
+\usepackage{array}
+\usepackage{hyperref}
+\hypersetup{
+colorlinks= true,
+allcolors = blue
+}
+\usepackage{arev} % excellent sans-serif font that has its own math mode font!
+\newtheorem{theorem}{Theorem}
+\usepackage{floatrow}
+
+\title{171.107 Quiz 4 Solutions}
+\author{Michael Busch \& Alexander de la Vega}
+\date{October 7, 2016}
+
+\begin{document}
+\maketitle
+
+\tikzset{->-/.style={decoration={
+  markings,
+  mark=at position #1 with {\arrow{>}}},postaction={decorate}}}
+
+\begin{figure}[h!]
+\centering
+
+\begin{tikzpicture}
+
+% floor
+\draw [fill=brown] (-6, 0) -- (6, 0) -- (6, 1) -- (-6, 1) -- (-6, 0); 
+\draw [pattern=north west lines, pattern color=black] (3, 0) -- (5, 0) -- (5, 1) -- (3, 1) -- (3, 0);
+
+% spring
+\draw [fill=gray] (-4, 0) -- (-3.75, 0) -- (-3.75, 1) -- (-4, 1) -- (-4, 0);
+\draw[decoration={aspect=0.3, segment length=1.5mm, amplitude=3mm,coil},decorate] (-3.75, .5) -- (-2.5, .5);
+\draw [fill=blue] (-2.5, .2) -- (-2.5, .8) -- (-2, .8) -- (-2, .2) -- (-2.5, .2);
+
+% bracket
+\draw [thick=1pt] (4, -.5) to [out=90, in=180] (4.5, -0.3) to [out=0, in=-150] (5, -.25);
+\draw [thick=1pt] (4, -.5) to [out=90, in=0] (3.5, -0.3) to [out=180, in=-30] (3, -.25);
+\node at (4, -.75) {$d = 2$ m};
+
+\end{tikzpicture}
+\caption{Bird's-eye view of the spring system.}
+\label{fig:spring}
+\end{figure}
+
+\section*{Quiz Question}
+
+\begin{large}
+A block with mass $m = 10$ kg rests on a frictionless table and is accelerated by a spring with spring constant $k = 2500$ N/m
+after being compressed a distance $x_1 = 0.5$ m from the spring's unstretched length. The floor is frictionless except for a rough 
+patch a distance $d = 2$ m long. For this rough path, the coefficient of friction is $\mu_k = 0.5$.
+
+\begin{enumerate}
+
+\item How much work is done by the spring as it accelerates the block?
+
+\item What is the speed of the block right after it leaves the spring?
+
+\item What is the speed of the block after it passes the rough spot?
+
+\end{enumerate}
+
+\end{large}
+
+\section*{Quiz Solution}
+
+\begin{large}
+The system in question is shown in Figure \ref{fig:spring}. As usual, no calculators were allowed and we let $g = 10$ m/s$^2$. 
+
+\begin{enumerate}
+
+\item The work done by the spring is equivalent to the change in its potential energy, that is,
+
+\begin{align*} W &= \Delta U = \frac{1}{2} k x_1 ^ 2 \qquad \qquad \framebox[1.1\width]{2 pts for eqn} \\
+&= \frac{1}{2} \times 2500 \times 0.5 ^ 2 \\
+&= \framebox[1.1\width]{312.5 J.} \qquad \qquad \framebox[1.1\width]{1 pt for answer + $\frac{1}{3}$ pts for units}
+\end{align*}
+
+\item To find the speed of the block, we set the change in potential energy above equal to the kinetic energy of the block and solve for 
+the speed:
+
+\begin{align*} \frac{1}{2} k x_1 ^ 2  &= \frac{1}{2} m v^2 \\
+\Longrightarrow v &= \sqrt{\frac{k x ^ 2}{m}} \qquad \qquad \framebox[1.1\width]{2 pts for eqn} \\
+&= \sqrt{\frac{2500 \times 0.25}{10}} \\
+&= \framebox[1.1\width]{$\sqrt{62.5}$ m/s.} \qquad \qquad \framebox[1.1\width]{1 pt for answer + $\frac{1}{3}$ pts for units}
+\end{align*}
+
+\item To find the speed after the block has passed the rough spot, we find the change in energy due to the work done by the rough spot on the block
+and subtract that from the energy of the block before reaching the rough spot. We find for the final speed $v_f$:
+
+\begin{align*} \Delta E = \frac{1}{2} k x_1 ^ 2 - \mu_k m g d &= \frac{1}{2} m v_f ^ 2 \\
+\Longrightarrow v_f &= \sqrt{\frac{k x_1 ^ 2 - 2 \mu_k m g d}{m}} \qquad \qquad \framebox[1.1\width]{2 pts for eqn} \\
+&= \sqrt{\frac{2500 \times 0.25 - 1 \times 10 \times 10 \times 2}{10}} \\
+&= \framebox[1.1\width]{$\sqrt{42.5}$ m/s.} \qquad \qquad \framebox[1.1\width]{1 pt for answer + $\frac{1}{3}$ pts for units}
+\end{align*}
+
+\end{enumerate}
+
+\end{large}
+
+
+
+
+
+
+
+\end{document}
